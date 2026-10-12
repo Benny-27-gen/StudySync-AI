@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1020" />
+  <meta name="description" content="StudySync AI — a focused workspace for student tasks, study plans, and focus sessions." />
+  <title>StudySync AI — Student Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard" aria-label="StudySync AI home">
+        <span class="brand-mark">S<span>✦</span></span>
+        <span class="brand-copy"><strong>StudySync</strong><small>AI STUDENT WORKSPACE</small></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">◫</span> Overview</button>
+        <button class="nav-item" data-view="tasks"><span class="nav-icon">☷</span> My assignments <span class="nav-count" id="navTaskCount">0</span></button>
+        <button class="nav-item" data-view="planner"><span class="nav-icon">✧</span> Smart planner</button>
+        <button class="nav-item" data-view="focus"><span class="nav-icon">◷</span> Focus room</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip-card"><span class="tip-spark">✦</span><strong>Small steps. Big progress.</strong><p>Consistency beats last-minute cramming. One focused session at a time.</p></div>
+        <div class="profile"><div class="avatar">B</div><div><strong>Student workspace</strong><small>Semester 3 · CSE-AIML</small></div><span class="profile-dots">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-sep">/</span><strong id="crumbTitle">Overview</strong></div>
+        <div class="topbar-right"><span class="today-label" id="todayLabel">TODAY</span><div class="top-avatar">B</div></div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="welcome-row"><div><p class="eyebrow">YOUR PERSONAL STUDY SPACE</p><h1>Make today <span>count.</span></h1><p class="subheading">A little progress every day adds up. Let's make it a good one.</p></div><button class="primary-btn" data-go="tasks"><span>＋</span> Add an assignment</button></div>
+        <div class="hero-banner"><div class="hero-copy"><span class="hero-pill"><span class="pulse-dot"></span> YOUR WEEK, IN FOCUS</span><h2>Build momentum,<br/>not pressure.</h2><p>Plan intentionally, work in focused sprints, and celebrate the progress you make.</p><button class="hero-btn" data-go="planner">Create a study plan <span>↗</span></button></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-core">✦</div><div class="floating-chip chip-one">✧ Stay curious</div><div class="floating-chip chip-two">✓ One task at a time</div><div class="floating-chip chip-three">◷ Deep work</div></div></div>
+        <div class="section-heading"><div><h2>Your overview</h2><p>Here's where things stand today.</p></div><span class="live-status"><span></span> LIVE FROM YOUR TASKS</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Assignments</span><span class="stat-icon blue">☷</span></div><div class="stat-value" id="totalTasks">0</div><div class="stat-foot"><span class="stat-note" id="pendingTasks">0 pending</span><span class="mini-bars"><i></i><i></i><i></i><i></i><i></i><i></i></span></div></article>
+          <article class="stat-card"><div class="stat-top"><span>Completed</span><span class="stat-icon purple">✓</span></div><div class="stat-value" id="completedTasks">0</div><div class="stat-foot"><span class="stat-note" id="completionRate">0% completion rate</span><div class="progress-track"><span id="completionBar"></span></div></div></article>
+          <article class="stat-card"><div class="stat-top"><span>Due soon</span><span class="stat-icon amber">◷</span></div><div class="stat-value" id="dueSoon">0</div><div class="stat-foot"><span class="stat-note">Due in the next 3 days</span><span class="due-mark">!</span></div></article>
+        </div>
+        <div class="dashboard-columns"><section class="panel tasks-panel"><div class="panel-heading"><div><h3>Upcoming assignments</h3><p>Keep the next deadline in sight.</p></div><button class="text-btn" data-go="tasks">View all <span>→</span></button></div><div id="upcomingList" class="task-list compact-list"></div><div class="empty-state" id="upcomingEmpty"><div class="empty-icon">✧</div><strong>Room for a fresh start</strong><p>Add an assignment and it will show up here.</p><button class="secondary-btn" data-go="tasks">Add your first task</button></div></section>
+          <section class="panel focus-panel"><div class="panel-heading"><div><h3>Focus snapshot</h3><p>Your next step can be small.</p></div><span class="snapshot-icon">✦</span></div><div class="focus-quote"><span class="quote-mark">“</span><p>You don't have to finish everything today. Just start with the next useful thing.</p></div><div class="focus-bottom"><div><small>READY FOR A SPRINT?</small><strong>25 minutes of focus</strong></div><button class="round-arrow" data-go="focus" aria-label="Open focus room">↗</button></div></section></div>
+        <footer class="app-footer"><span>StudySync AI <span class="footer-dot">•</span> Built for better study habits</span><span>Progress over perfection ✦</span></footer>
+      </section>
+
+      <section class="view" id="tasksView">
+        <div class="page-heading"><div><p class="eyebrow">STAY ONE STEP AHEAD</p><h1>My assignments<span>.</span></h1><p class="subheading">Capture the work, set a deadline, and make a plan.</p></div><button class="primary-btn" id="openTaskForm"><span>＋</span> New assignment</button></div>
+        <section class="panel form-panel hidden" id="taskFormPanel"><div class="panel-heading"><div><h3 id="taskFormTitle">Create an assignment</h3><p>Keep it clear and manageable.</p></div><button class="icon-btn" id="closeTaskForm" aria-label="Close form">✕</button></div><form id="taskForm"><input type="hidden" id="taskId"/><div class="form-grid"><label>Assignment title<input id="taskTitle" required maxlength="90" placeholder="e.g. DBMS lab record"/></label><label>Subject<input id="taskSubject" required maxlength="50" placeholder="e.g. Database Management"/></label><label>Due date<input id="taskDue" type="date" required/></label><label>Priority<select id="taskPriority"><option value="Medium">Medium</option><option value="High">High</option><option value="Low">Low</option></select></label></div><label class="full-label">Notes <span class="optional">(optional)</span><textarea id="taskNotes" rows="2" maxlength="240" placeholder="What is the next action?"></textarea></label><div class="form-actions"><button type="button" class="secondary-btn" id="cancelTask">Cancel</button><button type="submit" class="primary-btn">Save assignment <span>→</span></button></div></form></section>
+        <div class="task-toolbar"><div class="search-box"><span>⌕</span><input id="taskSearch" placeholder="Search assignments or subjects..." aria-label="Search assignments"/></div><select id="taskFilter" aria-label="Filter assignments"><option value="all">All assignments</option><option value="pending">Pending</option><option value="completed">Completed</option></select><select id="priorityFilter" aria-label="Filter by priority"><option value="all">All priorities</option><option value="High">High priority</option><option value="Medium">Medium priority</option><option value="Low">Low priority</option></select></div>
+        <div class="panel all-tasks-panel"><div class="panel-heading"><div><h3>Your task list</h3><p id="taskListSubtitle">Assignments you've added appear here.</p></div><span class="count-badge" id="allTaskCount">0 TASKS</span></div><div id="allTasksList" class="task-list"></div><div class="empty-state" id="allTasksEmpty"><div class="empty-icon">☷</div><strong>No assignments match yet</strong><p>Add a new assignment or change your search filters.</p></div></div>
+      </section>
+
+      <section class="view" id="plannerView">
+        <div class="page-heading"><div><p class="eyebrow">TURN GOALS INTO A ROUTINE</p><h1>Smart planner<span>.</span></h1><p class="subheading">Create a practical study schedule from your subjects and available time.</p></div><span class="feature-tag">✦ SMART SCHEDULING</span></div>
+        <div class="planner-layout"><section class="panel planner-form-panel"><div class="panel-heading"><div><h3>Build your plan</h3><p>Tell us what you need to study.</p></div><span class="planner-symbol">✧</span></div><form id="plannerForm"><label>Subjects to study <span class="optional">(separate with commas)</span><textarea id="plannerSubjects" rows="3" required placeholder="Data Structures, DBMS, Probability & Statistics"></textarea></label><div class="form-grid"><label>Study time per day<select id="studyHours"><option value="1">1 hour</option><option value="2" selected>2 hours</option><option value="3">3 hours</option><option value="4">4 hours</option><option value="5">5 hours</option></select></label><label>Plan length<select id="planDays"><option value="3">3 days</option><option value="5" selected>5 days</option><option value="7">7 days</option></select></label></div><label>Focus preference<select id="focusPreference"><option value="balanced">Balanced — rotate subjects</option><option value="difficult">Difficult subjects first</option><option value="revision">Revision and practice</option></select></label><button class="primary-btn full-button" type="submit">Generate my study plan <span>✦</span></button><p class="privacy-note">This prototype creates a suggested schedule in your browser. It does not send your study data to an AI service.</p></form></section><section class="panel generated-panel"><div class="panel-heading"><div><h3>Your study schedule</h3><p id="planDescription">Your generated plan will appear here.</p></div><button class="text-btn" id="printPlan" disabled>Print plan ↗</button></div><div id="planOutput" class="plan-output"><div class="plan-placeholder"><div class="placeholder-orbit">✦</div><strong>Your next chapter starts here.</strong><p>Enter your subjects and preferences, then generate a schedule you can follow.</p></div></div></section></div>
+      </section>
+
+      <section class="view" id="focusView">
+        <div class="page-heading"><div><p class="eyebrow">ONE THING AT A TIME</p><h1>Focus room<span>.</span></h1><p class="subheading">Quiet the noise. Give one task your full attention.</p></div><span class="feature-tag"><span class="pulse-dot"></span> DEEP WORK MODE</span></div>
+        <div class="focus-room-grid"><section class="panel timer-panel"><div class="timer-label"><span class="pulse-dot"></span> FOCUS SESSION</div><div class="timer-ring" id="timerRing"><div class="timer-inner"><span id="timerMode">FOCUS</span><strong id="timerDisplay">25:00</strong><small id="timerHint">One focused sprint</small></div></div><div class="timer-presets"><button class="preset active" data-minutes="25" data-mode="focus">25 min</button><button class="preset" data-minutes="5" data-mode="short">5 min break</button><button class="preset" data-minutes="15" data-mode="long">15 min break</button></div><div class="timer-actions"><button class="primary-btn" id="timerStart">Start focus <span>▶</span></button><button class="secondary-btn" id="timerReset">Reset</button></div><p class="timer-message" id="timerMessage" aria-live="polite">Choose a task, then begin when you're ready.</p></section><section class="panel focus-guide"><div class="panel-heading"><div><h3>Your focus ritual</h3><p>Make it easier to begin.</p></div><span class="snapshot-icon">✦</span></div><div class="ritual-list"><div class="ritual-item"><span>01</span><div><strong>Choose one outcome</strong><p>Decide what “done” means for this session.</p></div></div><div class="ritual-item"><span>02</span><div><strong>Clear your workspace</strong><p>Silence distractions and keep only what you need.</p></div></div><div class="ritual-item"><span>03</span><div><strong>Work until the timer ends</strong><p>When a thought interrupts, note it and return to the task.</p></div></div><div class="ritual-item"><span>04</span><div><strong>Take a real break</strong><p>Stand up, hydrate, and let your attention reset.</p></div></div></div><div class="focus-note"><span>✧</span><p>Tip: consistency matters more than a perfect study session.</p></div></section></div>
+      </section>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
